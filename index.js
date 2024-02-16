@@ -55,6 +55,10 @@ const getJobListing = async () => {
             Email: "jushuavalencia@gmail.com",
             Name: "Jushua Valencia",
           },
+          {
+            Email: "sulpicoanthony@gmail.com",
+            Name: "Anthony Sulpico",
+          },
         ],
         Subject: "OLJ Job Postings for Developers",
         TextPart:
@@ -88,7 +92,7 @@ const getJobListing = async () => {
   await browser.close();
 };
 
-cron.schedule("0 * * * *", () => {
+cron.schedule("*/30 * * * *", () => {
   getJobListing();
 });
 
