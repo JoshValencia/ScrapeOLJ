@@ -56,11 +56,19 @@ const getJobListing = async (retries = 0) => {
     });
 
     const currentDate = new Date();
-    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+    const dateOptions = { year: "numeric", month: "2-digit", day: "2-digit" };
+    const timeOptions = {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+      timeZone: "Asia/Manila",
+    };
     const formattedDate =
-      currentDate.toLocaleDateString("en-US", options) +
+      currentDate.toLocaleDateString("en-US", dateOptions) +
       " " +
-      currentDate.toLocaleTimeString();
+      currentDate.toLocaleTimeString("en-US", timeOptions);
+    console.log(formattedDate);
 
     const emailRequest = mailjet.post("send", { version: "v3.1" }).request({
       Messages: [
