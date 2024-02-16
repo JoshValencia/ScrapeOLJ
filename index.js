@@ -51,6 +51,13 @@ const getJobListing = async () => {
     });
   });
 
+  const currentDate = new Date();
+  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+  const formattedDate =
+    currentDate.toLocaleDateString("en-US", options) +
+    " " +
+    currentDate.toLocaleTimeString();
+
   const emailRequest = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
       {
@@ -68,7 +75,7 @@ const getJobListing = async () => {
             Name: "Anthony Sulpico",
           },
         ],
-        Subject: "OLJ Job Postings for Developers",
+        Subject: `OLJ Job Postings for Developers - ${formattedDate}`,
         TextPart:
           "These are the latest job postings for developers in OnlineJobs.ph.",
         HTMLPart: jobPost
