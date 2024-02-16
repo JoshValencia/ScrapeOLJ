@@ -107,9 +107,9 @@ const getJobListing = async () => {
   await browser.close();
 };
 
-// cron.schedule("*/30 * * * *", () => {
-//   getJobListing();
-// });
+cron.schedule("*/30 * * * *", () => {
+  getJobListing();
+});
 
 getJobListing();
 // Start the scraping
